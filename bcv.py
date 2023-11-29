@@ -41,13 +41,21 @@ def main():
         # Display the original image
         st.image(image, caption="Original Image", use_column_width=True)
 
-        # Edge Detection
-        edges = edge_detection(image)
-        st.image(edges, caption="Edge Detection", use_column_width=True)
+        # Transformation options
+        selected_transformations = st.multiselect(
+            "Select Transformations",
+            ["Edge Detection", "Corner Detection"]
+        )
 
-        # Corner Detection
-        corners = corner_detection(image.copy())
-        st.image(corners, caption="Corner Detection", use_column_width=True)
+        if "Edge Detection" in selected_transformations:
+            # Edge Detection
+            edges = edge_detection(image)
+            st.image(edges, caption="Edge Detection", use_column_width=True)
+
+        if "Corner Detection" in selected_transformations:
+            # Corner Detection
+            corners = corner_detection(image.copy())
+            st.image(corners, caption="Corner Detection", use_column_width=True)
 
 if __name__ == "__main__":
     main()
